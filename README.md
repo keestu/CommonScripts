@@ -17,7 +17,7 @@ Usage:
         e.g. framesPerSecObject.destroy();
     c. Choose the recurring function where the fps needs to be calculated.
         e.g. framesPerSecObject.updateFPS();
-    d. Create a field where the fps needs to be displayed. The insertion of the fps is taken care of
+    d. Create a field where the fps needs to be displayed. The insertion of the fps is taken care of.
         e.g. <b id="fps"></b>
 
 b. mouseLoc.js - Used for detecting mouse location

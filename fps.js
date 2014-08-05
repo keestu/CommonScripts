@@ -89,8 +89,8 @@ function defineFPSObject() {
         this.setUpdateFrames(this.getUpdateFrames() + 1);
 
         if (1000 < this.getUpdateTime()) {
-			this.setAvgFPS(1000*(this.getFrames()/this.getTotalTime()));
-			this.setCurFPS(1000*(this.getUpdateFrames()/this.getUpdateTime()));
+            this.setAvgFPS(1000*(this.getFrames()/this.getTotalTime()));
+            this.setCurFPS(1000*(this.getUpdateFrames()/this.getUpdateTime()));
             this.setUpdateTime(0);
             this.setUpdateFrames(0);
             }
@@ -105,7 +105,7 @@ function defineFPSObject() {
         delete this.updateTime;
         delete this.updateFrames;
         delete this.avgFPS;
-		delete this.curFPS;
+        delete this.curFPS;
         delete this;
         };
 

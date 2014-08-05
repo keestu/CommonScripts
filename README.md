@@ -11,12 +11,14 @@ Benefits:
 
     b. Recommended usage is by getters and setters
 
-    c. Constructor initializes the calculation. Developer has a choice on when to call the updateFPS functionality
+    c. Constructor initializes the calculation.
+    Developer has a choice on when to call the updateFPS functionality
 
     d. Destroyer method provided
 
 
 Usage:
+
     a. While starting your global script code declare the object.
 
         e.g. var framesPerSecObject = defineFPSObject();
@@ -50,15 +52,11 @@ Benefits:
 Usage:
 
     a. While starting your global script code declare the object.
-
         e.g. var mouseLoc = defineMouseLocationObject();
 
     b. Good practice: If you have a code that needs to be executed while exit run the desctructor.
-
         e.g. mouseLoc.destroy();
 
     c. Use the getters namely getX and getY to get the coordinates.
-
         e.g. mouseLoc.getX();
-
              mouseLoc.getY();

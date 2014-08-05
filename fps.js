@@ -26,6 +26,8 @@ function defineFPSObject() {
     frameCountObject.totalTime     = 0;
     frameCountObject.updateTime    = 0;
     frameCountObject.updateFrames  = 0;
+    frameCountObject.avgFPS        = 0;
+    frameCountObject.curFPS        = 0;
 
     /* Getters                                       */
     frameCountObject.getLastTime = function() {
@@ -42,6 +44,12 @@ function defineFPSObject() {
         };
     frameCountObject.getUpdateFrames = function() {
         return this.updateFrames;
+        };
+    frameCountObject.getAvgFPS = function() {
+        return this.avgFPS;
+        };
+    frameCountObject.getCurFPS = function() {
+        return this.curFPS;
         };
 
     /* Setters                                       */
@@ -60,6 +68,12 @@ function defineFPSObject() {
     frameCountObject.setUpdateFrames = function(updateFrames) {
         this.updateFrames = updateFrames;
         };
+    frameCountObject.setAvgFPS = function(avgFPS) {
+        this.avgFPS = avgFPS;
+        };
+    frameCountObject.setCurFPS = function(curFPS) {
+        this.curFPS = curFPS;
+        };
 
     /* Update the frame rate                         */
     frameCountObject.updateFPS = function() {
@@ -75,10 +89,8 @@ function defineFPSObject() {
         this.setUpdateFrames(this.getUpdateFrames() + 1);
 
         if (1000 < this.getUpdateTime()) {
-            if (document.getElementById('fps')) {
-                document.getElementById('fps').innerHTML = "FPS AVG: " + Math.floor((1000*this.getFrames()/this.getTotalTime()))
-                  + " CUR: " + Math.floor((1000*this.getUpdateFrames()/this.getUpdateTime()));
-                }
+			this.setAvgFPS(1000*(this.getFrames()/this.getTotalTime()));
+			this.setCurFPS(1000*(this.getUpdateFrames()/this.getUpdateTime()));
             this.setUpdateTime(0);
             this.setUpdateFrames(0);
             }
@@ -92,6 +104,8 @@ function defineFPSObject() {
         delete this.totalTime;
         delete this.updateTime;
         delete this.updateFrames;
+        delete this.avgFPS;
+		delete this.curFPS;
         delete this;
         };
 

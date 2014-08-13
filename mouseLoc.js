@@ -77,7 +77,7 @@ function defineMouseLocationObject() {
     /* Destructor                                    */
     globMouseObj.destroy = function() {
         printLog("    Destroy Mouse object");
-        document.onmousemove = function(){};
+        document.onmousemove = null;
         delete this.x;
         delete this.y;
         delete this;

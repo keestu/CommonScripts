@@ -30,20 +30,20 @@ function defineKeyBoardObject() {
         return this.keyArr[keyCode];
         };
 
-    /* Setter for a key                              */
-    globKeyPressObj.setKey = function(keyCode,status) {
+    /* Setter for a key status                       */
+    globKeyPressObj.setKeyStatus = function(keyCode,status) {
         this.keyArr[keyCode] = status;
         };
 
     /* Key Down and Up handlers                      */
     globKeyPressObj.handleKeyDown = function(evt) {
         evt = (evt) ? evt : (window.event) ? window.event : "";
-        this.setKey(evt.keyCode,true);
+        this.setKeyStatus(evt.keyCode,true);
         };
 
     globKeyPressObj.handleKeyUp = function(evt) {
         evt = (evt) ? evt : (window.event) ? window.event : "";
-        this.setKey(evt.keyCode,false);
+        this.setKeyStatus(evt.keyCode,false);
         };
 
     /* Destructor                                    */

@@ -25,8 +25,8 @@ function defineKeyBoardObject() {
     document.onkeydown  = function (e) {globKeyPressObj.handleKeyDown(e);};
     document.onkeyup    = function (e) {globKeyPressObj.handleKeyUp(e);};
 
-    /* Getter for a key                              */
-    globKeyPressObj.getKey = function(keyCode) {
+    /* Getter for a key status                       */
+    globKeyPressObj.getKeyStatus = function(keyCode) {
         return this.keyArr[keyCode];
         };
 

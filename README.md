@@ -70,4 +70,4 @@ Usage:
     run the destructor.
         e.g. keyboardPress.destroy();
     c. Use the getters namely getKey to get the keyed value.
-        e.g. keyboardPress.getKey(<<keyCode>>);
+        e.g. keyboardPress.getKeyStatus(<<keyCode>>);

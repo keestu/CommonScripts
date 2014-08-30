@@ -46,8 +46,28 @@ Usage:
     a. While starting your global script code declare the object.
         e.g. var mouseLoc = defineMouseLocationObject();
     b. Good practice: If you have a code that needs to be executed while exit;
-    run the desctructor.
+    run the destructor.
         e.g. mouseLoc.destroy();
     c. Use the getters namely getX and getY to get the coordinates.
         e.g. mouseLoc.getX();
              mouseLoc.getY();
+
+b. keyBoardEvents.js - Used for detecting mouse location
+
+Benefits:
+
+    Object oriented approach
+    Recommended usage is by getters and setters
+    Constructor initializes the calculation. Developer logically only accesses the getters.
+    Destroyer method provided
+
+
+Usage:
+
+    a. While starting your global script code declare the object.
+        e.g. var keyboardPress = defineKeyBoardObject();
+    b. Good practice: If you have a code that needs to be executed while exit;
+    run the destructor.
+        e.g. keyboardPress.destroy();
+    c. Use the getters namely getKey to get the keyed value.
+        e.g. keyboardPress.getKey(<<keyCode>>);

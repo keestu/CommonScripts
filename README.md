@@ -52,7 +52,7 @@ Usage:
         e.g. mouseLoc.getX();
              mouseLoc.getY();
 
-b. keyBoardEvents.js - Used for detecting mouse location
+b. keyBoardEvents.js - Used for detecting Keys pressed
 
 Benefits:
 

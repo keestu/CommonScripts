@@ -1,6 +1,6 @@
 /*  
     Mouse Location finder
-    Copyright (C) 2014  Tappali Ekanathan Keestu (keestu@gmail.com)
+    Copyright (C) 2016  Tappali Ekanathan Keestu (keestu@gmail.com)
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
@@ -20,8 +20,12 @@ function defineMouseLocationObject() {
     var globMouseObj = new Object();
 
     /* Constructor for the global mouse location     */
-    globMouseObj.x = 0;
-    globMouseObj.y = 0;
+    globMouseObj.x     = 0;
+    globMouseObj.y     = 0;
+    globMouseObj.prevX = 0;
+    globMouseObj.prevY = 0;
+    globMouseObj.LR    = '';
+    globMouseObj.TB    = '';
     document.onmousemove = function (e) {globMouseObj.mouseMove(e);};
 
     /* Getter for X and Y                            */
@@ -33,17 +37,38 @@ function defineMouseLocationObject() {
         return this.y;
         };
 
+    /* Getter for LRTB                               */
+    globMouseObj.getLR = function() {
+        return this.LR;
+        };
+
+    globMouseObj.getTB = function() {
+        return this.TB;
+        };
+
     /* Setter for X and Y                            */
     globMouseObj.setX = function(x) {
-        this.x = x;
+        this.prevX = this.x;
+        this.x     = x;
         };
 
     globMouseObj.setY = function(y) {
-        this.y = y;
+        this.prevY = this.y
+        this.y     = y;
         };
-        
+
+    /* Setter for LRTB                               */
+    globMouseObj.setLR = function(LR) {
+        this.LR     = LR;
+        };
+
+    globMouseObj.setTB = function(TB) {
+        this.TB     = TB;
+        };
+
     globMouseObj.mouseMove = function(evt) {
         evt = (evt) ? evt : (window.event) ? window.event : "";
+
         if (evt.pageX) {
             if (0 <= evt.pageX) {
                 this.setX(evt.pageX);
@@ -72,6 +97,21 @@ function defineMouseLocationObject() {
                 this.setY(0);
                 }
             }
+
+        /* Set LeftRight BottonTop */
+        if (this.x > this.prevX) {
+            globMouseObj.setLR("R");
+            }
+        else {
+            globMouseObj.setLR("L");
+            }
+
+        if (this.y > this.prevY) {
+            globMouseObj.setTB("B");
+            }
+        else {
+            globMouseObj.setTB("T");
+            }
         };
 
     /* Destructor                                    */
@@ -79,7 +119,11 @@ function defineMouseLocationObject() {
         printLog("    Destroy Mouse object");
         document.onmousemove = null;
         delete this.x;
+        delete this.prevX
         delete this.y;
+        delete this.prevY;
+        delete this.LR;
+        delete this.TB;
         delete this;
         };
 

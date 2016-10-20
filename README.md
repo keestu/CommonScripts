@@ -51,6 +51,8 @@ Usage:
     c. Use the getters namely getX and getY to get the coordinates.
         e.g. mouseLoc.getX();
              mouseLoc.getY();
+             mouseLoc.getLR();
+             mouseLoc.getTB();
 
 b. keyBoardEvents.js - Used for detecting Keys pressed
 

@@ -26,6 +26,8 @@ function defineMouseLocationObject() {
     globMouseObj.prevY = 0;
     globMouseObj.LR    = '';
     globMouseObj.TB    = '';
+    globMouseObj.moveTime;
+    globMouseObj.responseRate = 100;
     document.onmousemove = function (e) {globMouseObj.mouseMove(e);};
 
     /* Getter for X and Y                            */
@@ -66,9 +68,8 @@ function defineMouseLocationObject() {
         this.TB     = TB;
         };
 
-    globMouseObj.mouseMove = function(evt) {
-        evt = (evt) ? evt : (window.event) ? window.event : "";
-
+    /* Set the mouse location                        */
+    globMouseObj.setLocation = function(evt) {
         if (evt.pageX) {
             if (0 <= evt.pageX) {
                 this.setX(evt.pageX);
@@ -97,6 +98,21 @@ function defineMouseLocationObject() {
                 this.setY(0);
                 }
             }
+        };
+
+    /* No movement checker                           */
+    globMouseObj.checkMovement = function(evt){
+        globMouseObj.setLocation(evt);
+        if (this.x == this.prevX && this.y == this.prevY) {
+            globMouseObj.setLR("N");
+            globMouseObj.setTB("N");
+            }
+        };
+
+    globMouseObj.mouseMove = function(evt) {
+        evt = (evt) ? evt : (window.event) ? window.event : "";
+
+        globMouseObj.setLocation(evt);
 
         /* Set LeftRight BottonTop */
         if (this.x > this.prevX) {
@@ -112,18 +128,26 @@ function defineMouseLocationObject() {
         else {
             globMouseObj.setTB("T");
             }
+        
+        clearTimeout(this.moveTime);
+        this.moveTime = setTimeout(function(){
+          globMouseObj.checkMovement(evt);
+          }, this.responseRate);
         };
 
     /* Destructor                                    */
     globMouseObj.destroy = function() {
         printLog("    Destroy Mouse object");
         document.onmousemove = null;
+        clearInterval(this.moveTime);
         delete this.x;
         delete this.prevX
         delete this.y;
         delete this.prevY;
         delete this.LR;
         delete this.TB;
+        delete this.moveTime;
+        delete this.responseRate;
         delete this;
         };
 

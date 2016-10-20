@@ -100,21 +100,8 @@ function defineMouseLocationObject() {
             }
         };
 
-    /* No movement checker                           */
-    globMouseObj.checkMovement = function(evt){
-        globMouseObj.setLocation(evt);
-        if (this.x == this.prevX && this.y == this.prevY) {
-            globMouseObj.setLR("N");
-            globMouseObj.setTB("N");
-            }
-        };
-
-    globMouseObj.mouseMove = function(evt) {
-        evt = (evt) ? evt : (window.event) ? window.event : "";
-
-        globMouseObj.setLocation(evt);
-
-        /* Set LeftRight BottonTop */
+    /* Set the LRTB                                  */
+    globMouseObj.setLRTB = function() {
         if (this.x > this.prevX) {
             globMouseObj.setLR("R");
             }
@@ -128,7 +115,23 @@ function defineMouseLocationObject() {
         else {
             globMouseObj.setTB("T");
             }
-        
+        };
+
+    /* No movement checker                           */
+    globMouseObj.checkMovement = function(evt){
+        globMouseObj.setLocation(evt);
+        if (this.x == this.prevX && this.y == this.prevY) {
+            globMouseObj.setLR("N");
+            globMouseObj.setTB("N");
+            }
+        };
+
+    globMouseObj.mouseMove = function(evt) {
+        evt = (evt) ? evt : (window.event) ? window.event : "";
+
+        globMouseObj.setLocation(evt);
+        globMouseObj.setLRTB();
+
         clearTimeout(this.moveTime);
         this.moveTime = setTimeout(function(){
           globMouseObj.checkMovement(evt);

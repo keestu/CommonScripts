@@ -51,8 +51,7 @@ function defineKeyBoardObject() {
         printLog("    Destroy Key Press object");
         document.onkeydown  = null;
         document.onkeyup    = null;
-        delete this.keyArr;
-        delete this;
+        this.keyArr         = null;
         };
 
     return globKeyPressObj;

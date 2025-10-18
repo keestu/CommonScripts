@@ -99,14 +99,13 @@ function defineFPSObject() {
     /* Destructor                                    */
     frameCountObject.destroy = function() {
         printLog("    Destroy FPS object");
-        delete this.lastTime;
-        delete this.frames;
-        delete this.totalTime;
-        delete this.updateTime;
-        delete this.updateFrames;
-        delete this.avgFPS;
-        delete this.curFPS;
-        delete this;
+        this.lastTime     = null;
+        this.frames       = null;
+        this.totalTime    = null;
+        this.updateTime   = null;
+        this.updateFrames = null;
+        this.avgFPS       = null;
+        this.curFPS       = null;
         };
 
     return frameCountObject;
